@@ -6,24 +6,34 @@ import 'answer.dart';
 class Quiz extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int questionIndex;
-  final Function answerQuestion;
+  final void Function(int) answerQuestion;
 
-  Quiz({
+  const Quiz({
     required this.questions,
     required this.answerQuestion,
-    required this.questionIndex
+    required this.questionIndex,
+    super.key,
   });
 
+  bool get isQuestionSelected {
+    return questionIndex < questions.length;
+  }
   @override
   Widget build(BuildContext context) {
+    List<Map<String, Object>> answers = isQuestionSelected ?
+        questions[questionIndex]['answers'] as List<Map<String, Object>>
+        : [];
     return Column(
       children: [
         Question(
-            questions[questionIndex]['questionText'].toString()
+            questions[questionIndex]['questionText'] as String
         ),
-        ...(questions[questionIndex]['answers'] as List<Map<String, Object>>).map((answer) {
-          return Answer(() => answerQuestion(answer['score']), answer['text'].toString());
-        }).toList()
+        ...answers.map((resp) {
+          return Answer(
+            resp['text'] as String,
+              () => answerQuestion(resp['score'] as int),
+          );
+        }).toList(),
       ],
     );
   }

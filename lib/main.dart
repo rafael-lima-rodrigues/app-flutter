@@ -1,5 +1,3 @@
-import 'package:first_app/answer.dart';
-import 'package:first_app/question.dart';
 import 'package:first_app/quiz.dart';
 import 'package:first_app/result.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+  var _totalScore = 0;
   final _questions = const [
     {
       'questionText': 'What\'s your favorite color?',
@@ -43,8 +43,6 @@ class _MyAppState extends State<MyApp> {
       ],
     }
   ];
-  var _questionIndex = 0;
-  var _totalScore = 0;
 
   void _resetQuiz() {
     setState(() {
@@ -54,25 +52,24 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _answerQuestion(int score) {
-    _totalScore += score;
+    if(isQuestionSelected)
     setState(() {
       _questionIndex++;
+      _totalScore += score;
     });
-    print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print('We have more questions');
-    }
   }
-
+  bool get isQuestionSelected {
+    return _questionIndex < _questions.length;
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-          title: Text('My First APP'),
+        title: Text('My Quiz'),
           centerTitle: true,
           backgroundColor: Colors.green),
-      body: _questionIndex < _questions.length
+      body: isQuestionSelected
           ? Quiz(
               answerQuestion: _answerQuestion,
               questions: _questions,

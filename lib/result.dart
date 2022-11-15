@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
-  final VoidCallback restHandler;
+  final void Function() restHandler;
 
-  Result(this.resultScore, this.restHandler);
+  Result(this.resultScore, this.restHandler, {super.key});
 
   String get resultPhrase {
     var resultText = 'You did it!';
@@ -22,21 +22,25 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(children: <Widget>[
-        Text(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(child: Text(
           resultPhrase,
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 28,
+          ),
+        ),
         ),
         TextButton(
-          child: Text('Restart Quiz'),
-          style: ButtonStyle(
-              textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
-                  fontSize: 25, decoration: TextDecoration.underline))),
-          onPressed: restHandler,
-        )
-      ]),
+            onPressed: restHandler,
+            child: const Text(
+              'Reset ?',
+              style: TextStyle(
+                fontSize: 18
+              ),
+            ))
+      ],
     );
   }
 }
