@@ -1,16 +1,8 @@
-# first_app
+# Flutter Introduction
 
-A new Flutter project.
+My first flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is my first project in flutter, based on the course ["Aprenda Flutter e Desenvolva Apps Para Android e IOS 2022"](https://www.udemy.com/course/curso-flutter/).
+the goal of this project is to acquire a basic knowledge of the Flutter framework and the Dart language. 
